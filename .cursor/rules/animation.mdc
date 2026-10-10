@@ -1,0 +1,13 @@
+---
+description: GSAP and Lenis animation rules for components and providers
+globs: components/**, app/**, lib/**
+alwaysApply: false
+---
+
+- Use the `useGSAP` hook from `@gsap/react` with a `scope` ref, so tweens and ScrollTriggers are cleaned up on unmount.
+- Register GSAP plugins once, in a single shared module (`lib/gsap`), never inside components.
+- Initialise Lenis exactly once, in one provider. Sync it to GSAP: `lenis.on('scroll', ScrollTrigger.update)`, `gsap.ticker.add((t) => lenis.raf(t * 1000))`, `gsap.ticker.lagSmoothing(0)`.
+- Animate `transform` and `opacity` only. Never animate `width`, `height`, `top`, or `left`.
+- Respect `prefers-reduced-motion` with `gsap.matchMedia()`. The fallback must show all content with no motion.
+- Content must be readable without JS, and animation must not cause layout shift.
+- Lazy-load heavy effects (WebGL, large assets).

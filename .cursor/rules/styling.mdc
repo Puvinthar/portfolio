@@ -1,0 +1,12 @@
+---
+description: Tailwind and design-token styling rules
+globs: app/**, components/**, styles/**
+alwaysApply: false
+---
+
+- Use Tailwind utilities backed by design tokens (CSS variables) for color, spacing, type, and radii. No hard-coded hex values in components.
+- Dark theme is the default. Take colors from `styles/tokens.css`, and never invent new ones inline.
+- Mobile-first: write the base styles for small screens, then scale up with breakpoints. Check 375px, 768px, and 1440px.
+- No inline `style` except for values driven dynamically by animation.
+- Visible focus states on every interactive element, and AA text contrast.
+- Reuse existing components and utilities before writing new CSS.

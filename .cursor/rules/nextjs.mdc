@@ -1,0 +1,14 @@
+---
+description: Next.js App Router and TypeScript conventions for pages and components
+globs: app/**, components/**, lib/**
+alwaysApply: false
+---
+
+- Server Components by default. Add `"use client"` only for state, effects, refs, or browser APIs, and keep client components small and at the leaves of the tree.
+- Use `next/image` (always set `alt`, plus `width`/`height` or `fill`) and `next/font`. No `<img>` tags and no font `<link>` tags.
+- Set SEO through the Metadata API (`export const metadata` or `generateMetadata`). No manual `<head>` tags.
+- Read content on the server from `/content`. Never hard-code copy in components.
+- Use `next/link` for internal navigation, and semantic elements (`main`, `section`, `nav`, `button`).
+- Naming: `PascalCase` components, `camelCase` functions, `kebab-case` files. Named exports, one component per file.
+- Validate all external input (forms, content files) with Zod. Use `unknown` and narrow instead of `any`.
+- Comments explain why, not what.

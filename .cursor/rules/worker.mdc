@@ -1,0 +1,13 @@
+---
+description: Cloudflare Worker rules for the /chat and /contact endpoints
+globs: worker/**
+alwaysApply: false
+---
+
+- Validate every request body with Zod. Reject invalid input with a 400, and cap the request size.
+- Verify the Turnstile token server-side (siteverify) before doing any work.
+- Rate limit per IP, and enforce a global daily cap for chat.
+- CORS: allow only the exact site origin(s), handle `OPTIONS`, never use `*`.
+- Read secrets from `env` (set with `wrangler secret`). Never put them in code, config, or logs.
+- Chat answers come only from published content, with a fixed system prompt and no tools or actions. Treat user text as untrusted.
+- Return clear, non-leaky errors (no stack traces). If the AI quota is exhausted, return a friendly fallback message.

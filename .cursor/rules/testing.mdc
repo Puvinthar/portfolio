@@ -1,0 +1,12 @@
+---
+description: Playwright and Vitest testing rules
+globs: e2e/**, **/*.test.ts, **/*.test.tsx, **/*.spec.ts, **/*.spec.tsx
+alwaysApply: false
+---
+
+- Locate elements by role, label, or text (`getByRole`, `getByLabel`, `getByText`), not by CSS class or XPath.
+- No `test.skip`, `test.only`, or `waitForTimeout`. Use auto-waiting and web-first assertions such as `expect(locator).toBeVisible()`.
+- Mock the Worker with `page.route()`. Tests never call the real `/chat` or `/contact` endpoints.
+- Keep tests independent, with no shared state or ordering assumptions.
+- Cover user-visible flows: navigation, contact form success and error, chat widget, `/admin` redirect.
+- Add Vitest tests for any Worker logic you change (validation, rate limiting, prompt assembly).

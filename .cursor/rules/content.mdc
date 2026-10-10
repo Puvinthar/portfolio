@@ -1,0 +1,11 @@
+---
+description: Rules for editing portfolio content files
+globs: content/**
+alwaysApply: false
+---
+
+- Follow the Zod schema fields exactly, and run `pnpm check:content` after any change.
+- Private or employer projects use `repoUrl: null` and `sanitized: true`.
+- Only state metrics already confirmed in content. If a number is missing, add a `TODO` instead of inventing one.
+- Keep copy specific and plain: what was built, with which tools, and what the confirmed result was. No buzzwords or inflated claims.
+- Don't change dates, employers, or certifications unless the task says so.
